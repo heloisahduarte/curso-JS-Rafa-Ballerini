@@ -1,39 +1,25 @@
 function adicionarTarefa() {
-      // Define uma mensagem de sucesso ao adicionar a tarefa
-
-
-      let mensagem = "Tarefa adicionada com sucesso!";
-
-      // Obtém o elemento do input onde o usuário digita a tarefa
-
+     
       let inputTarefa = document.getElementById("inputTarefa");
+      let tarefa = inputTarefa.value.trim();
 
-      // Pega o valor digitado pelo usuário no input
+      const mensagem = document.getElementById("mensagem");
+
+      if (tarefa == "") {
+            let mensagemErro = "Por favor, digite uma tarefa válida.";
+            mensagem.textContent = mensagemErro;
+            mensagem.style.color = "#9c240f";
+      } else {
+            let mensagemSucesso = "Tarefa adicionada com sucesso";
+            mensagem.textContent = mensagemSucesso;
+            mensagem.style.color = "#2a7414";     
+
+            const listaTarefas = document.getElementById("listaTarefas");
+            let novaTarefa = document.createElement("li");
+            novaTarefa.textContent = tarefa;
+            listaTarefas.appendChild(novaTarefa);
+      }
+
       
-      let tarefa = inputTarefa.value;
-
-      // Exibe a mensagem de sucesso em um elemento com id "mensagem"
-      
-      document.getElementById
-
-      ("mensagem").textContent = mensagem;
-
-      // Obtém a lista de tarefas (elemento <ul> ou <ol>)
-
-      let listaTarefas = document.getElementById("listaTarefas");
-
-      // Cria um novo elemento de lista (<li>) para a nova tarefa
-
-      let novaTarefa = document.createElement("li");
-
-      // Define o texto do novo <li> como a tarefa digitada
-
-      novaTarefa.textContent = tarefa;
-
-      // Adiciona o novo <li> à lista de tarefas
-
-      listaTarefas.appendChild(novaTarefa);
-
-      // Limpa o campo de input para o usuário digitar outra tarefa
-      inputTarefa.value = ""
+      inputTarefa.value = "";
 }
