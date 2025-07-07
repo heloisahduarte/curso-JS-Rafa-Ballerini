@@ -30,6 +30,7 @@ function adicionarTarefa() {
 function renderizarTarefas() {
 
       const listaTarefas = document.getElementById("listaTarefas");
+      listaTarefas.innerHTML = "";
 
       //for itens na lista
       //1. item inicial (iterador)
@@ -46,6 +47,13 @@ function renderizarTarefas() {
       for (i; i < tarefas.length; i++) {
             let novaTarefa = document.createElement("li");
             novaTarefa.textContent = tarefas[i];
+
+
+            let botaoRemover = document.createElement("button");
+            botaoRemover.className = "remover";
+            botaoRemover.textContent = "Remover";
+
+            novaTarefa.appendChild(botaoRemover);
             listaTarefas.appendChild(novaTarefa);
       }
 
