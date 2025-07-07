@@ -1,3 +1,5 @@
+//Arquivo JS não formatado
+
 
 let tarefas = []
 
@@ -87,12 +89,34 @@ function renderizarTarefas() {
             }
       }
 
-      
+     const botaoLimpar = document.getElementById("LimparLista");
+      if (botaoLimpar) {
+            botaoLimpar.remove();
+      }
+
+      // Adicionar botão "Limpar Lista" se houver tarefas
+      if (tarefas.length > 0) {
+            const botaoLimpar = document.createElement("button");
+            botaoLimpar.id = "LimparLista";
+            botaoLimpar.textContent = "Limpar Lista";
+            botaoLimpar.onclick = limparLista;
+
+            // Adicione o botão após a lista de tarefas
+            listaTarefas.appendChild(botaoLimpar)
+      }
+
+      function limparLista() {
+      tarefas.length = 0;
+      renderizarTarefas();
+      const mensagem = document.getElementById("mensagem");
+      mensagem.textContent = "Lista limpa com sucesso!";
+      mensagem.style.color = "#2a7414";
+}
 }
 
-function limparLista() {
-            tarefas.length = 0;
-            renderizarTarefas();
-            const mensagem = document.getElementById("mensagem");
-            mensagem.textContent = "Lista limpa com sucesso!";
-      }
+//function limparLista() {
+            //tarefas.length = 0;
+           // renderizarTarefas();
+           // const mensagem = document.getElementById("mensagem");
+           // mensagem.textContent = "Lista limpa com sucesso!";
+     // 

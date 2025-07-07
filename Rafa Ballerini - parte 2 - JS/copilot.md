@@ -139,3 +139,119 @@ for (let i = 0; i < tarefas.length; i++) {
 
 **Resumo:**  
 Colocar `i` entre colchetes faz o código pegar cada tarefa do array, uma por uma, na ordem em que
+
+# Conversa sobre Lista de Tarefas em JavaScript
+
+## O que é um array?
+
+Arrays são estruturas de dados que permitem armazenar vários valores em uma única variável. Cada valor em um array é chamado de elemento e pode ser acessado por um índice numérico, começando do zero. Por exemplo:
+
+```javascript
+let frutas = ["banana", "maçã", "laranja"];
+```
+
+## O que é um loop?
+
+Loop é uma estrutura de repetição usada para executar um bloco de código várias vezes, de acordo com uma condição. Em JavaScript, os loops mais comuns são `for`, `while` e `do...while`. Eles são úteis para percorrer arrays, processar listas de dados ou repetir tarefas até que uma condição seja satisfeita.
+
+Exemplo de loop `for`:
+
+```javascript
+for (let i = 0; i < frutas.length; i++) {
+    alert(frutas[i]);
+}
+```
+
+## Por que o botão "Limpar Lista" não está funcionando?
+
+O problema é que a função `limparLista` estava definida **dentro** da função `renderizarTarefas`. Assim, ela só existe dentro desse escopo e não pode ser chamada de fora, por exemplo, pelo seu HTML ou por outro script.
+
+**Como corrigir:**  
+Mova a função `limparLista` para fora da função `renderizarTarefas`:
+
+```javascript
+function renderizarTarefas() {
+      // ...código...
+}
+
+function limparLista() {
+      tarefas.length = 0;
+      renderizarTarefas();
+      const mensagem = document.getElementById("mensagem");
+      mensagem.textContent = "Lista limpa com sucesso!";
+      mensagem.style.color = "#2a7414";
+}
+```
+
+## Como fazer o botão "Limpar Lista" aparecer apenas quando houver itens?
+
+Adicione o botão dinamicamente apenas se houver tarefas:
+
+```javascript
+const botaoLimpar = document.getElementById("LimparLista");
+if (botaoLimpar) {
+      botaoLimpar.remove();
+}
+
+if (tarefas.length > 0) {
+      const botaoLimpar = document.createElement("button");
+      botaoLimpar.id = "LimparLista";
+      botaoLimpar.textContent = "Limpar Lista";
+      botaoLimpar.onclick = limparLista;
+      listaTarefas.appendChild(botaoLimpar);
+}
+```
+
+## O que é `parentNode`?
+
+O `parentNode` serve para acessar o elemento pai de um nó no DOM. Ele é usado para adicionar o botão "Limpar Lista" **fora** da `<ul>` (lista de tarefas), colocando o botão como "irmão" da lista, e não como um item dentro dela.
+
+## Tem como fazer sem usar `parentNode`?
+
+Sim! Você pode adicionar o botão "Limpar Lista" diretamente no HTML e só mostrar ou esconder ele com JavaScript:
+
+**HTML:**
+```html
+<button id="btnLimparLista" style="display:none;">Limpar Lista</button>
+```
+
+**JavaScript:**
+```javascript
+const botaoLimpar = document.getElementById("btnLimparLista");
+if (tarefas.length > 0) {
+      botaoLimpar.style.display = "inline";
+} else {
+      botaoLimpar.style.display = "none";
+}
+botaoLimpar.onclick = limparLista;
+```
+
+## Posso colocar o botão "Limpar Lista" dentro da `<ul>` com `appendChild`?
+
+Pode sim! Usando `listaTarefas.appendChild(botaoLimpar)`, o botão vai aparecer como um item da lista, logo após as tarefas. Se quiser que ele fique fora da lista, use `listaTarefas.parentNode.appendChild(botaoLimpar)`.
+
+## Por que não consigo adicionar nada na lista depois de criar o botão?
+
+Provavelmente você usou o mesmo nome para a função e para o botão (`limparLista`). Isso faz com que a função seja sobrescrita pelo botão. Use nomes diferentes:
+
+```javascript
+const botaoLimparLista = document.createElement("button");
+botaoLimparLista.id = "LimparLista";
+botaoLimparLista.textContent = "Limpar Lista";
+botaoLimparLista.onclick = limparLista;
+listaTarefas.appendChild(botaoLimparLista);
+```
+
+## O botão "Limpar Lista" não está funcionando
+
+Verifique se você está atribuindo corretamente a função ao evento `onclick`:
+
+```javascript
+botaoLimpar.onclick = limparLista; // Correto!
+```
+
+Se fizer `botaoLimpar.onclick = botaoLimpar;`, não vai funcionar.
+
+---
+
+Se precisar de mais alguma coisa ou quiser aprender mais sobre JavaScript, é só perguntar. Bons
