@@ -15,8 +15,10 @@ function adicionarTarefa() {
             mensagem.style.color = "#2a7414";     
 
             const listaTarefas = document.getElementById("listaTarefas");
+
             let novaTarefa = document.createElement("li");
             novaTarefa.textContent = tarefa;
+            
             listaTarefas.appendChild(novaTarefa);
       }
 
