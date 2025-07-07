@@ -1,6 +1,10 @@
+
+let tarefas = []
+
 function adicionarTarefa() {
      
-      let inputTarefa = document.getElementById("inputTarefa");
+      
+      const inputTarefa = document.getElementById("inputTarefa");
       let tarefa = inputTarefa.value.trim();
 
       const mensagem = document.getElementById("mensagem");
@@ -14,14 +18,36 @@ function adicionarTarefa() {
             mensagem.textContent = mensagemSucesso;
             mensagem.style.color = "#2a7414";     
 
-            const listaTarefas = document.getElementById("listaTarefas");
+            tarefas.push(tarefa);
 
-            let novaTarefa = document.createElement("li");
-            novaTarefa.textContent = tarefa;
-            
-            listaTarefas.appendChild(novaTarefa);
+            renderizarTarefas();
       }
 
       
       inputTarefa.value = "";
+}
+
+function renderizarTarefas() {
+
+      const listaTarefas = document.getElementById("listaTarefas");
+
+      //for itens na lista
+      //1. item inicial (iterador)
+      //2. item final (condição)
+      //3. se vai ser de 1 em 1 elemento ou se pula
+
+      //for (iterador, consdição, frequecncia)
+
+      //i++ = i+1
+
+
+      let i = 0;
+
+      for (i; i < tarefas.length; i++) {
+            let novaTarefa = document.createElement("li");
+            novaTarefa.textContent = tarefas[i];
+            listaTarefas.appendChild(novaTarefa);
+      }
+
+      
 }
