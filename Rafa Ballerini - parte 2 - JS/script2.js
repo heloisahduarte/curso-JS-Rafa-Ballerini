@@ -47,6 +47,8 @@ function renderizarTarefas() {
             let novaTarefa = document.createElement("li");
             novaTarefa.textContent = tarefas[i];
 
+            novaTarefa.style.setProperty('--delay', `${i * 0.2}s`);
+
             let botaoRemover = document.createElement("button");
             botaoRemover.className = "remover";
             botaoRemover.textContent = "Remover";

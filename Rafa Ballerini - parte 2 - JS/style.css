@@ -19,6 +19,7 @@ body {
 }
 h1 {
     color: #331F19;
+    
 }
 p {
     color: #331F19;
@@ -51,7 +52,19 @@ ul li {
     margin: 5px 0;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: aparecer 1s forwards;
+    animation-delay: var(--delay, 10s);
 }
+
+@keyframes aparecer {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 /* Estilo para o campo de entrada */
 input[type="text"] {
